@@ -3,17 +3,28 @@
 Injection flaws allow attackers to relay malicious code through an application to another system. These attacks include calls to the operating system via system calls, the use of external programs via shell commands, as well as calls to backend databases via SQL (i.e., SQL injection). Whole scripts written in Perl, Python, and other languages can be injected into poorly designed applications and executed. Any time an application uses an interpreter of any type there is a danger of introducing an injection vulnerability.
 注入漏洞允许攻击者通过一个应用传播恶意代码到另一系统。
 这些攻击包括通过系统调用操作系统的调用，通过shell命令应用外部程序，
-还有通过SQL
+还有通过SQL操作后台数据库的调用（SQL注入），
+所有通过perl,python或者其他语言写的脚本会被注入不好的应用并执行。
+任何时候一个应用解释器的应用，都会有产生注入攻击的危险。
 Many web applications use operating system features and external programs to perform their functions. Sendmail is probably the most frequently invoked external program, but many other programs are used as well. When a web application passes information from an HTTP request through as part of an external request, it must be carefully scrubbed. Otherwise, the attacker can inject special (meta) characters, malicious commands, or command modifiers into the information and the web application will blindly pass these on to the external system for execution.
-
+很多web应用程序通过操作系统的功能或者第三方的应用程序实现自己的功能。
+发送邮件也许是最常见引用第三方程序，同时还有许多其他的程序
+当一个web应用程序通过一个HTTP请求的一部分外部请求发送消息时，一定要仔细的对请求进行净化。
+否则，攻击者可以在消息和web应用程序中注入特定字符，恶意命令或者命令调试器
+回通过请求到外部的系统中去执行。
 SQL injection is a particularly widespread and dangerous form of injection. To exploit a SQL injection flaw, the attacker must find a parameter that the web application passes through to a database. By carefully embedding malicious SQL commands into the content of the parameter, the attacker can trick the web application into forwarding a malicious query to the database. These attacks are not difficult to attempt and more tools are emerging that scan for these flaws. The consequences are particularly damaging, as an attacker can obtain, corrupt, or destroy database contents.
-
+SQL注入是一个特别流行且十分危险的注入行为，为了利用一个SQL注入漏洞，
+攻击者必须找到一个web应用程序传到数据库的参数。然后仔细的吧恶意的SQL命令嵌入到参数中，
+攻击者诱骗web应用程序把带有恶意指令的字符串发送到后台数据库。这些攻击不难尝试，很多可以发现这些漏洞的扫描攻击已经出现。当一个攻击者可以操作，改变或者销毁数据库内容是是个特别可怕的结果。
 Injection vulnerabilities can be very easy to discover and exploit, but they can also be extremely obscure. The consequences of a successful injection attack can also run the entire range of severity, from trivial to complete system compromise or destruction. In any case, the use of external calls is quite widespread, so the likelihood of an application having an injection flaw should be considered high.
-
+注入漏洞可以很容易的被找到和利用，但是也是十分晦涩的。一次成功的注入攻击的结果可以影响小部件到
+整个系统损坏或者毁坏。任何情况下，应用外部程序都十分常见，所以一个应用程序有注入漏洞的可能性都需要被高度重视。
 ==Environments Affected==
-
+受影响的环境
 Every web application environment allows the execution of external commands such as system calls, shell commands, and SQL requests. The susceptibility of an external call to command injection depends on how the call is made and the specific component that is being called, but almost all external calls can be attacked if the web application is not properly coded.
-
+任何一个允许执行像系统调用，shell命令，SQL请求等外部程序的应用程序。
+一个外部命令注入的损害程度取决于命令怎么执行以及执行的组件，但是几乎所有的外部调用可以攻击
+，如果web应用程序编码不正确的话。
 ==Examples==
 
 # A malicious parameter could modify the actions taken by a system call that normally retrieves the current user’s file to access another user’s file (e.g., by including path traversal “../” characters as part of a filename request). Additional commands could be tacked on to the end of a parameter that is passed to a shell script to execute an additional shell command (e.g., “; rm –r *”) along with the intended command.
