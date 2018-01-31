@@ -1,0 +1,326 @@
+This category is for tagging common types of application security attacks. 
+
+==What is an attack?==
+
+Attacks are the techniques that attackers use to exploit the vulnerabilities in applications. Attacks are often confused with vulnerabilities, so please try to be sure that the attack you are describing is something that an attacker would do, rather than a weakness in an application.
+
+All attack articles should follow the [[Attack template]].
+
+==Examples:==
+
+*Brute Force: Is an exhaustive attack that works by testing every possible value of a parameter (password, file name, etc.) [[:Brute_force_attack|Brute_force_attack]]
+*Cache Poisoning: Is an attack that seeks to introduce false or malicious data into a web cache, normally via HTTP Response Splitting.  [[:Cache_Poisoning|Cache_Poisoning]]
+*DNS Poisoning: Is an attack that seeks to introduce false DNS address information into the cache of a DNS server, where it will be served to other users enabling a variety of attacks. (e.g., Phishing)
+
+Note: many of the items marked vulnerabilities and other places are really attacks. Some of the more obvious are:
+* [[Resource exhaustion]]
+* [[Reflection injection]]
+* [[Reflection attack in an auth protocol]]
+This category has the following 12 subcategories, out of 12 total.
+
+A
+► Abuse of Functionality‎ (7 P)
+    Category:Abuse of Functionality
+    How to add a new Abuse of Functionality article
+    You can follow the instructions to make a new Abuse of Functionality article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Abuse of Functionality category:
+    
+    [[Category:Abuse of Functionality]]
+    Pages in category "Abuse of Functionality"
+    The following 7 pages are in this category, out of 7 total.
+    
+    C
+    Cache Poisoning
+    Cross-User Defacement
+    M
+    Mobile code: invoking untrusted mobile code
+    Mobile code: non-final public field
+    Mobile code: object hijack
+    P
+    Path Traversal
+    S
+    Server Side Request Forgery
+D
+► Data Structure Attacks‎ (2 P)
+    Category:Data Structure Attacks
+    How to add a new Data Structure Attacks article
+    You can follow the instructions to make a new Data Structure Attacks article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Data Structure Attacks category:
+    
+    [[Category:Data Structure Attacks]]
+    Pages in category "Data Structure Attacks"
+    The following 2 pages are in this category, out of 2 total.
+    
+    B
+    Buffer overflow attack
+    Buffer Overflow via Environment Variables
+E
+► Embedded Malicious Code‎ (3 P)
+    Category:Embedded Malicious Code
+    How to add a new Embedded Malicious Code article
+    You can follow the instructions to make a new Embedded Malicious Code article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Embedded Malicious Code category:
+    
+    [[Category:Embedded Malicious Code]]
+    Pages in category "Embedded Malicious Code"
+    The following 3 pages are in this category, out of 3 total.
+    
+    C
+    Cross-Site Request Forgery (CSRF)
+    L
+    Logic/time bomb
+    T
+    Trojan Horse
+► Exploitation of Authentication‎ (8 P)
+    Category:Exploitation of Authentication
+    How to add a new Exploitation of Authentication article
+    You can follow the instructions to make a new Exploitation of Authentication article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Exploitation of Authentication category:
+    
+    [[Category:Exploitation of Authentication]]
+    Pages in category "Exploitation of Authentication"
+    The following 8 pages are in this category, out of 8 total.
+    
+    C
+    Cross-Site Request Forgery (CSRF)
+    CSRF
+    E
+    Execution After Redirect (EAR)
+    O
+    One-Click Attack
+    S
+    Session fixation
+    Session hijacking attack
+    Session Prediction
+    X
+    XSRF
+I
+► Injection‎ (30 P)
+    How to add a new Injection article
+    You can follow the instructions to make a new Injection article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Injection category:
+    
+    [[Category:Injection]]
+    Pages in category "Injection"
+    The following 30 pages are in this category, out of 30 total.
+    
+    B
+    Blind SQL Injection
+    Blind XPath Injection
+    C
+    Code Injection
+    Command Injection
+    Comment Injection Attack
+    Content Security Policy
+    Content Spoofing
+    CORS RequestPreflighScrutiny
+    Cross-site Scripting (XSS)
+    Custom Special Character Injection
+    D
+    Direct Dynamic Code Evaluation ('Eval Injection')
+    F
+    Format string attack
+    Full Path Disclosure
+    Function Injection
+    I
+    Inyección de Código
+    Inyección SQL
+    Inyección SQL Ciega
+    Inyección XPath
+    Inyección XPath Ciega
+    P
+    Parameter Delimiter
+    PHP Object Injection
+    R
+    Regular expression Denial of Service - ReDoS
+    Resource Injection
+    S
+    Server-Side Includes (SSI) Injection
+    Special Element Injection
+    SQL Injection
+    SQL Injection Bypassing WAF
+    W
+    Web Parameter Tampering
+    X
+    XPATH Injection
+    Xss in subtitle
+P
+► Path Traversal Attack‎ (1 P)
+    Category:Path Traversal Attack
+    Description
+    This category of attacks exploit various path vulnerabilities to access files or directories that are not intended to be accessed. This attack works on applications that take user input and use it in a "path" that is used to access a filesystem. If the attacker includes special characters that modify the meaning of the path, the application will misbehave and may allow the attacker to access unauthorized resources. This type of attack has been successful on web servers, application servers, and custom code.
+    
+    Examples
+    The most basic Path Traversal attack uses the '../' special character sequence to alter the location of the request. In an Operating System, this special character combination notes to move down one directory. An example of such an attack could look like the following: http://foo.com/../../barfile
+    
+    While the web server may stand up well to such an attack, another approach is to target the application itself. Most commonly the use of parameters being passed by the application can be exploited. Such data can come from user input or application data being passed between pages. Let's take for the following example into account: http://foo.com/bar.cgi?store=mystore.html
+    
+    We can observe from the above that bar.cgi takes a parameter to navigate through the application; in this case, the store location is mystore.html. We can use this knowledge to attempt the retrieval of bar.cgi's source code by submitting: http://foo.com/bar.cgi?store=bar.cgi
+    
+    This can be taken a step further. By combining the two methods above one may be able to retrieve server resident content using the application as a means of accessing it. Keep in mind, the web server daemon (process) runs as a user on the machine and as such the application has read access to certain areas. Using the foobar store example URL above, let's look at how we can grab a file from another location of the server: http://foo.com/bar.cgi?store=../../secretfile.txt
+    
+    Categories
+    Pages in category "Path Traversal Attack"
+    This category contains only the following page.
+    
+    P
+    Path Traversal
+► Probabilistic Techniques‎ (4 P)
+    Category:Probabilistic Techniques
+    How to add a new Probabilistic Techniques article
+    You can follow the instructions to make a new Probabilistic Techniques article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Probabilistic Techniques category:
+    
+    [[Category:Probabilistic Techniques]]
+    Pages in category "Probabilistic Techniques"
+    The following 4 pages are in this category, out of 4 total.
+    
+    B
+    Brute force attack
+    C
+    Cash Overflow
+    Cryptanalysis
+    D
+    Denial of Service
+► Protocol Manipulation‎ (1 P)
+    Category:Protocol Manipulation
+    Pages in category "Protocol Manipulation"
+    This category contains only the following page.
+    
+    T
+    Traffic flood
+R
+► Resource Depletion‎ (2 P)
+    Category:Resource Depletion
+    How to add a new Resource Depletion article
+    You can follow the instructions to make a new Resource Depletion article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Resource Depletion category:
+    
+    [[Category:Resource Depletion]]
+    Pages in category "Resource Depletion"
+    The following 2 pages are in this category, out of 2 total.
+    
+    C
+    Cash Overflow
+    D
+    Denial of Service
+► Resource Manipulation‎ (10 P)
+    Category:Resource Manipulation
+    Pages in category "Resource Manipulation"
+    The following 10 pages are in this category, out of 10 total.
+    
+    C
+    Comment Injection Attack
+    Custom Special Character Injection
+    D
+    Double Encoding
+    F
+    Forced browsing
+    P
+    Path Traversal
+    R
+    Relative Path Traversal
+    Repudiation Attack
+    S
+    Setting Manipulation
+    Spyware
+    U
+    Unicode Encoding
+S
+► Sniffing Attacks‎ (empty)
+► Spoofing‎ (5 P)
+    Category:Spoofing
+    Pages in category "Spoofing"
+    The following 5 pages are in this category, out of 5 total.
+    
+    C
+    Cash Overflow
+    Cross-Site Request Forgery (CSRF)
+    D
+    Denial of Service
+    M
+    Man-in-the-middle attack
+    S
+    Server Side Request Forgery
+Pages in category "Attack"
+The following 69 pages are in this category, out of 69 total.
+
+B
+Binary planting
+Blind SQL Injection
+Blind XPath Injection
+Brute force attack
+Buffer overflow attack
+C
+Cache Poisoning
+Cash Overflow
+Code Injection
+Command Injection
+Comment Injection Attack
+Content Security Policy
+Content Spoofing
+Cornucopia - Ecommerce Website Edition - Wiki Deck
+CORS OriginHeaderScrutiny
+CORS RequestPreflighScrutiny
+Credential stuffing
+Cross Frame Scripting
+Cross Site History Manipulation (XSHM)
+Cross Site Tracing
+Cross-Site Request Forgery (CSRF)
+Cross-site Scripting (XSS)
+Cross-User Defacement
+Cryptanalysis
+CSV Injection
+Custom Special Character Injection
+D
+Denial of Service
+Direct Dynamic Code Evaluation ('Eval Injection')
+E
+Execution After Redirect (EAR)
+F
+Forced browsing
+Form action hijacking
+Format string attack
+Full Path Disclosure
+Function Injection
+H
+HTTP Response Splitting
+I
+Inyección de Código
+Inyección SQL
+Inyección SQL Ciega
+Inyección XPath
+Inyección XPath Ciega
+L
+Log Injection
+M
+Man-in-the-browser attack
+Man-in-the-middle attack
+Mobile code: invoking untrusted mobile code
+Mobile code: non-final public field
+Mobile code: object hijack
+O
+One-Click Attack
+OWASP Cornucopia
+P
+Parameter Delimiter
+Path Traversal
+R
+Reflected DOM Injection
+Regular expression Denial of Service - ReDoS
+Repudiation Attack
+Resource Injection
+S
+Server-Side Includes (SSI) Injection
+Session fixation
+Session hijacking attack
+Session Prediction
+Setting Manipulation
+Special Element Injection
+Spyware
+SQL Injection
+T
+Traffic flood
+Trojan Horse
+U
+Unicode Encoding
+W
+Web Parameter Tampering
+Windows ::DATA alternate data stream
+X
+XPATH Injection
+XSRF
+Xss in subtitle
