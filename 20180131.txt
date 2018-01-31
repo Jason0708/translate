@@ -1,26 +1,34 @@
 This category is for tagging common types of application security attacks. 
-
+这个类目标出普通的应用程序攻击类型
 ==What is an attack?==
-
+什么是攻击
 Attacks are the techniques that attackers use to exploit the vulnerabilities in applications. Attacks are often confused with vulnerabilities, so please try to be sure that the attack you are describing is something that an attacker would do, rather than a weakness in an application.
-
+攻击用来利用应用程序漏洞的技术就叫做漏洞。
+攻击经常和漏洞混为一谈，所以请确定黑客所做的攻击是你描述的攻击，而不是应用程序的弱点。
 All attack articles should follow the [[Attack template]].
-
+所有攻击文章应该跟从攻击模板。
 ==Examples:==
-
+举例
 *Brute Force: Is an exhaustive attack that works by testing every possible value of a parameter (password, file name, etc.) [[:Brute_force_attack|Brute_force_attack]]
 *Cache Poisoning: Is an attack that seeks to introduce false or malicious data into a web cache, normally via HTTP Response Splitting.  [[:Cache_Poisoning|Cache_Poisoning]]
 *DNS Poisoning: Is an attack that seeks to introduce false DNS address information into the cache of a DNS server, where it will be served to other users enabling a variety of attacks. (e.g., Phishing)
-
+*暴力破解是一种穷尽攻击，通过尝试所有可能的参数。
+*缓存中毒：是一种寻求把错误或者恶意数据放入到web缓存的攻击。
+*DNS中毒：是一种寻求把错误的DNS地址信息放入到DNS服务的缓存中，然后这些缓存会被其他的用户用来做各种攻击（比如网络仿冒）
 Note: many of the items marked vulnerabilities and other places are really attacks. Some of the more obvious are:
+注意：许多被比较成漏洞的条目和其他地方确实是攻击。一些贡明显的是
 * [[Resource exhaustion]]
+*资源耗尽
 * [[Reflection injection]]
+*反射注入
 * [[Reflection attack in an auth protocol]]
+*认证协议中的反射攻击
 This category has the following 12 subcategories, out of 12 total.
-
+这个条目有下面12个子条目，一共12个
 A
 ► Abuse of Functionality‎ (7 P)
     Category:Abuse of Functionality
+	条目：功能滥用
     How to add a new Abuse of Functionality article
     You can follow the instructions to make a new Abuse of Functionality article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Abuse of Functionality category:
     
@@ -30,18 +38,26 @@ A
     
     C
     Cache Poisoning
+	缓存中毒
     Cross-User Defacement
+    跨用户销毁
     M
     Mobile code: invoking untrusted mobile code
+	手机代码：执行非信任手机代码
     Mobile code: non-final public field
+	手机代码：非最终公开田
     Mobile code: object hijack
+	手机代码：对象劫持
     P
     Path Traversal
+	目录遍历
     S
     Server Side Request Forgery
+	服务器端伪造请求
 D
 ► Data Structure Attacks‎ (2 P)
     Category:Data Structure Attacks
+	条目：数据构造攻击
     How to add a new Data Structure Attacks article
     You can follow the instructions to make a new Data Structure Attacks article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Data Structure Attacks category:
     
@@ -51,10 +67,13 @@ D
     
     B
     Buffer overflow attack
+	缓冲区溢出攻击
     Buffer Overflow via Environment Variables
+	通过环境变量的缓冲区溢出
 E
 ► Embedded Malicious Code‎ (3 P)
     Category:Embedded Malicious Code
+	条目：嵌入恶意代码
     How to add a new Embedded Malicious Code article
     You can follow the instructions to make a new Embedded Malicious Code article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Embedded Malicious Code category:
     
@@ -64,12 +83,16 @@ E
     
     C
     Cross-Site Request Forgery (CSRF)
+	跨站请求伪造
     L
     Logic/time bomb
+	逻辑/时间炸弹
     T
     Trojan Horse
+	木马
 ► Exploitation of Authentication‎ (8 P)
     Category:Exploitation of Authentication
+	条目：认证的利用
     How to add a new Exploitation of Authentication article
     You can follow the instructions to make a new Exploitation of Authentication article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Exploitation of Authentication category:
     
@@ -80,18 +103,25 @@ E
     C
     Cross-Site Request Forgery (CSRF)
     CSRF
+	跨站请求伪造
     E
     Execution After Redirect (EAR)
+	重定向执行
     O
     One-Click Attack
+	点击攻击
     S
     Session fixation
+	会话固定
     Session hijacking attack
+	会话劫持攻击
     Session Prediction
+    会话预测
     X
     XSRF
 I
 ► Injection‎ (30 P)
+    注入
     How to add a new Injection article
     You can follow the instructions to make a new Injection article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Injection category:
     
@@ -101,47 +131,78 @@ I
     
     B
     Blind SQL Injection
+	SQL盲注
     Blind XPath Injection
+	XPATH盲注
     C
     Code Injection
+	代码注入
     Command Injection
+	命令注入
     Comment Injection Attack
+	注释注入攻击
     Content Security Policy
+	内容安全策略
     Content Spoofing
+	内容哄骗
     CORS RequestPreflighScrutiny
+	跨域请求安全
     Cross-site Scripting (XSS)
+    跨站脚本
     Custom Special Character Injection
+	定制特殊字符注入
     D
     Direct Dynamic Code Evaluation ('Eval Injection')
+	直接动态代码评价（评价注入）
     F
     Format string attack
+	字符串形式攻击
     Full Path Disclosure
+	全路径泄露
     Function Injection
+	功能注入
     I
     Inyección de Código
+	代码注入
     Inyección SQL
+	SQL注入
     Inyección SQL Ciega
+	SQL盲注
     Inyección XPath
+	XPath注入
     Inyección XPath Ciega
+	XPATH盲注
     P
     Parameter Delimiter
+	参数分隔符
     PHP Object Injection
+	PHP对象注入
     R
     Regular expression Denial of Service - ReDoS
+	正则拒绝服务
     Resource Injection
+	资源注入
     S
     Server-Side Includes (SSI) Injection
+	服务器端包含注入
     Special Element Injection
+	特殊元素注入
     SQL Injection
+	SQL注入
     SQL Injection Bypassing WAF
+	绕过WAF SQL注入
     W
     Web Parameter Tampering
+	web参数篡改
     X
     XPATH Injection
+	XPATH注入
     Xss in subtitle
+	子标题Xss
 P
 ► Path Traversal Attack‎ (1 P)
     Category:Path Traversal Attack
+	条目：路径遍历攻击
     Description
     This category of attacks exploit various path vulnerabilities to access files or directories that are not intended to be accessed. This attack works on applications that take user input and use it in a "path" that is used to access a filesystem. If the attacker includes special characters that modify the meaning of the path, the application will misbehave and may allow the attacker to access unauthorized resources. This type of attack has been successful on web servers, application servers, and custom code.
     
@@ -160,8 +221,10 @@ P
     
     P
     Path Traversal
+	路径遍历
 ► Probabilistic Techniques‎ (4 P)
     Category:Probabilistic Techniques
+	条目：概率技术
     How to add a new Probabilistic Techniques article
     You can follow the instructions to make a new Probabilistic Techniques article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Probabilistic Techniques category:
     
@@ -171,21 +234,28 @@ P
     
     B
     Brute force attack
+	暴力破解攻击
     C
     Cash Overflow
+	现金溢出
     Cryptanalysis
+	密码破解
     D
     Denial of Service
+	拒绝服务
 ► Protocol Manipulation‎ (1 P)
     Category:Protocol Manipulation
+	条目：操作协议
     Pages in category "Protocol Manipulation"
     This category contains only the following page.
     
     T
     Traffic flood
+	交通泛滥
 R
 ► Resource Depletion‎ (2 P)
     Category:Resource Depletion
+	资源耗尽
     How to add a new Resource Depletion article
     You can follow the instructions to make a new Resource Depletion article. Please use the appropriate structure and follow the Tutorial. Be sure to paste the following at the end of your article to make it show up in the Resource Depletion category:
     
@@ -195,34 +265,47 @@ R
     
     C
     Cash Overflow
+	资金溢出
     D
     Denial of Service
+	拒绝服务
 ► Resource Manipulation‎ (10 P)
     Category:Resource Manipulation
+	资源操作
     Pages in category "Resource Manipulation"
     The following 10 pages are in this category, out of 10 total.
     
     C
     Comment Injection Attack
+	注释注入攻击
     Custom Special Character Injection
+	定制特殊字符攻击
     D
     Double Encoding
+	双重编码
     F
     Forced browsing
+	暴击浏览
     P
     Path Traversal
     R
     Relative Path Traversal
     Repudiation Attack
+	拒绝攻击
     S
     Setting Manipulation
+	设置操作
     Spyware
+	间谍软件
     U
     Unicode Encoding
+	Unicode编码
 S
 ► Sniffing Attacks‎ (empty)
+   嗅探攻击
 ► Spoofing‎ (5 P)
     Category:Spoofing
+	条目：哄骗
     Pages in category "Spoofing"
     The following 5 pages are in this category, out of 5 total.
     
@@ -240,6 +323,7 @@ The following 69 pages are in this category, out of 69 total.
 
 B
 Binary planting
+二进制移植
 Blind SQL Injection
 Blind XPath Injection
 Brute force attack
@@ -256,6 +340,7 @@ Cornucopia - Ecommerce Website Edition - Wiki Deck
 CORS OriginHeaderScrutiny
 CORS RequestPreflighScrutiny
 Credential stuffing
+证书填充
 Cross Frame Scripting
 Cross Site History Manipulation (XSHM)
 Cross Site Tracing
@@ -278,6 +363,7 @@ Full Path Disclosure
 Function Injection
 H
 HTTP Response Splitting
+HTTP Response截断
 I
 Inyección de Código
 Inyección SQL
@@ -286,6 +372,7 @@ Inyección XPath
 Inyección XPath Ciega
 L
 Log Injection
+日志注入
 M
 Man-in-the-browser attack
 Man-in-the-middle attack
