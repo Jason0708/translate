@@ -26,29 +26,52 @@ Every web application environment allows the execution of external commands such
 一个外部命令注入的损害程度取决于命令怎么执行以及执行的组件，但是几乎所有的外部调用可以攻击
 ，如果web应用程序编码不正确的话。
 ==Examples==
-
+示例
 # A malicious parameter could modify the actions taken by a system call that normally retrieves the current user’s file to access another user’s file (e.g., by including path traversal “../” characters as part of a filename request). Additional commands could be tacked on to the end of a parameter that is passed to a shell script to execute an additional shell command (e.g., “; rm –r *”) along with the intended command.
+恶意参数可以改变系统调用的行为，该调用获取当前用户的文件去访问其他用户的文件
+例如，通过在文件请求中加入参数“../”,
+在shell脚本的末尾参数附加指令去执行，跟随着原来计划的指令。
 # SQL queries could be modified by adding additional ‘constraints’ to a where clause (e.g., “OR 1=1”) to gain access to or modify unauthorized data. 
-
+SQL语句也可能通过强制增加从句，比如 “OR 1=1”被更改，来获取查看或者更改没有权限的数据。
 ==How to Determine If You Are Vulnerable==
-
+如果你是容易受到攻击的，应该怎么决策
 The best way to determine if your applications are vulnerable to injection attacks is to search the source code for all calls to external resources (e.g., system, exec, fork, Runtime.exec, SQL queries, or whatever the syntax is for making requests to interpreters in your environment). Note that many languages have multiple ways to run external commands. Developers should review their code and search for all places where input from an HTTP request could possibly make its way into any of these calls. You should carefully examine each of these calls to be sure that the protection steps outlined below are followed.
-
+如果你的应用程序是易受注入攻击的，最好的方式检测源码中所有的外部来源的调用，
+例如system,exec,fork,Runtime.exec,SQL queries或者通过系统的解释器来请求的语法，
+需要主义而的是许多程序语言拥有许多运行外部程序的方法，
+开发者应该审查自己的代码，查看来自http请求的输入可能会进入任何这些调用的所有地方。
+你应该通过仔细的检查所用的调用，来确定后续的保护步骤。
 ==How to Protect Yourself==
-
+怎么保护自己
 The simplest way to protect against injection is to avoid accessing external interpreters wherever possible. For many shell commands and some system calls, there are language specific libraries that perform the same functions. Using such libraries does not involve the operating system shell interpreter, and therefore avoids a large number of problems with shell commands.
-
+最简单的防治注入的保护方式是不允许任何的外部解释器。
+对于许多的shell命令和系统命令来说，存在可以实现相同功能的开发库。
+应该这些开发库不牵扯执行系统调用解释器，
+隐藏可以防治shell命令的大量问题。
 For those calls that you must still employ, such as calls to backend databases, you must carefully validate the data provided to ensure that it does not contain any malicious content. You can also structure many requests in a manner that ensures that all supplied parameters are treated as data, rather than potentially executable content. The use of stored procedures or prepared statements will provide significant protection, ensuring that supplied input is treated as data. These measures will reduce, but not completely eliminate the risk involved in these external calls. You still must always validate such input to make sure it meets the expectations of the application in question. For more details on how to specifically defend against SQL Injection, please refer to OWASP's [[SQL Injection Prevention Cheat Sheet]].
-
+对于你仍然一定要使用的调用，比如对后台数据库的调用，你一定要仔细的
+确认数据，确保数据中不包含任何的恶意内容。
+同时你可以用吧所有提供的参数当做数据而不是可能执行内容的方式构建请求。
+使用存储过程或准备好的语句将提供重要的保护，确保所提供的输入被视为数据。
+这些方法可以降低但不能完全消除包含外部调用的危险。
+你仍然必须一直确认输入来确保输入时应用程序想要的。
+想要获得更详细的怎样解决SQL注入，请参考
 Another strong protection against injection attacks is to ensure that the web application runs with only the privileges it absolutely needs to perform its function. So you should not run the webserver as root or access a database as DBADMIN, otherwise an attacker can abuse these administrative privileges granted to the web application. Some of the J2EE environments allow the use of the Java sandbox, which can prevent the execution of system commands.
-
+其他的防止注入攻击的保护方式是，确保web应用程序通过执行权限来控制。
+所有你应该用root执行web服务,用DBADMIN用户进入数据库，
+不然一个攻击者可以滥用授予给web应用程序的管理权限。
+一些J2EE环境运行Java沙箱，一种可以阻止系统调用执行的方式。
 If an external command must be used, any user information that is being inserted into the command should be rigorously checked. Mechanisms should be put in place to handle any possible errors, timeouts, or blockages during the call.
 All output, return codes and error codes from the call should be checked to ensure that the expected processing actually occurred. At a minimum, this will allow you to determine that something has gone wrong. Otherwise, the attack may occur and never be detected.
-
+如果必须应该外部命令的话，任何被插入到命令中的用户信息必须被严格的检查。
+任何调用期间可能的出错，超时或者堵塞都需要部署有解决的机制。
+应该检查所有的输出，返回值和error值确保期望的处理正在发生。
+至少这允许你发现一些错误的事情正在发生。
+不然，攻击可能在永远都不会发现的时候执行。
 The OWASP Filters project is producing reusable components in several languages to help prevent many forms of injection.
-
+OWASP过滤项目是在产生在一些开发语言中可重复使用的组件，来防治许多注入的形式。
 ==References==
-
+引用
 * OWASP [[SQL Injection Prevention Cheat Sheet]]
 * OWASP [[Data_Validation | Developers Guide, Chapter on Data Validation]]
 * OWASP [[Testing_for_SQL_Injection_(OWASP-DV-005) | Testing Guide: Chapter on SQL Injection Testing]]
