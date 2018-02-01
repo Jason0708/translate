@@ -42,7 +42,7 @@ header ("Location: " . $_GET['page']);
 Crafting appropriate request: [1
 构造合适的请求
 1 - remove page from the cache
-
+删除缓存中的页面
 GET http://testsite.com/index.html HTTP/1.1
 Pragma: no-cache
 Host: testsite.com
@@ -54,6 +54,7 @@ Accept-Language: en
 Accept-Charset: iso-8859-1,*,utf-8
 
 HTTP header fields "Pragma: no-cache" or "Cache-Control: no-cache" will remove the page from cache (if the page is stored in cache, obviously).
+HTTP头部域“pragma:no-cache”或者“Cache-Control:no-cache”会把缓存中的页面删除掉（显然，如果页面存在缓存中的话）
 
 2 - using HTTP Response Splitting we force cache server to generate two responses to one request
 利用HTTP截断我们强制缓存服务器产生两个请求形成一个请求
@@ -71,7 +72,7 @@ Accept-Language: en
 Accept-Charset: iso-8859-1,*,utf-8
 
 We are intentionally setting the future time (in the header it's set to 27 October 2009) in the second response HTTP header "Last-Modified" to store the response in the cache.
-
+我们有意在第二个HTTP响应头中设置将来的时间“Last-Modified”去把响应保存在缓存中（在头部中被设置成2009/11/27）
 We may get this effect by setting the following headers:
 
     Last-Modified (checked byt the If-Modified-Since header)
@@ -89,15 +90,16 @@ Accept-Language: en
 Accept-Charset: iso-8859-1,*,utf-8
 
 In theory, the cache server should match the second answer from the request #2 to the request #3. In this way we've replaced the cache content.
-
+理论上，缓存服务器会匹配第二个而且请求的第二步中的应答给第三步，用这种方法，我们替换了缓存内容
 The rest of the requests should be executed during one connection (if the cache server doesn't require a more sophisticated method to be used), possibly immediately one after another.
-
+其余的请求应该在一个连接期间执行(如果缓存服务器不需要使用更复杂的方法)，可能会一个接一个地执行。
 It may appear problematic to use this attack as a universal techique for cache poisoning. It's due to cache server's different connection model and request proccessing implementations. What does it mean? That for example effective method to poison Apache 2.x cache with mod_proxy and mod_cache modules won't work with Squid.
-
+使用此攻击作为缓存中毒的通用技术可能会出现问题。这是由于缓存服务器的不同连接模型和请求处理实现。这是什么意思？例如，使用mod_proxy和mod_cache模块对Apache2.x缓存进行毒化的有效方法将不能用于SQUID。
 A different problem is the length of the URI, which sometime makes it impossible to put the necessary response header, which would next be matched to the request for the poisoned page.
+另一个不同的问题是uri的长度，有时这使得不可能放置必要的响应头，接下来将与中毒页面的请求匹配。 
 
 The request examples used are from [1], which were modified on the needs of the article.
-
+使用的请求示例来自。[1]，根据该条的需要作了修改。 
 More information can be found in this document, which focuses on these kinds of attacks [1] http://packetstormsecurity.org/papers/general/whitepaper_httpresponse.pdf by Amit Klein, Director of Security and Research
 Related Threat Agents
 
