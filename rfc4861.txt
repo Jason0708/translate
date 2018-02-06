@@ -267,12 +267,12 @@ RFC 4861               Neighbor Discovery in IPv6         September 2007
                  cases where the node is unaware that a unicast address            节点不知道单播地址
                  is actually an anycast address.                                   是任播地址的情况下
                                                                                    
-   prefix      - a bit string that consists of some number of initial              
+   prefix      - a bit string that consists of some number of initial              prefix  有一个地址的初始字节组成的字节串
                  bits of an address.                                               
                                                                                    
-   link-layer address                                                              
-               - a link-layer identifier for an interface.  Examples               
-                 include IEEE 802 addresses for Ethernet links.                    
+   link-layer address                                                              link-layer
+               - a link-layer identifier for an interface.  Examples               接口的链路层身份证，比如
+                 include IEEE 802 addresses for Ethernet links.                    以太网连接的IEEE802地址
                                                                                    
                                                                                    
                                                                                    
@@ -284,51 +284,51 @@ Narten, et al.              Standards Track                     [Page 5]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-   on-link     - an address that is assigned to an interface on a                  
-                 specified link.  A node considers an address to be on-            
-                 link if:                                                          
+   on-link     - an address that is assigned to an interface on a                  on-link 一个指定的连接的接口地址
+                 specified link.  A node considers an address to be on-            一个节点认为地址时on-link
+                 link if:                                                          如果
                                                                                    
-                    - it is covered by one of the link's prefixes (e.g.,           
-                      as indicated by the on-link flag in the Prefix               
-                      Information option), or                                      
+                    - it is covered by one of the link's prefixes (e.g.,           被连接的前缀覆盖到（比如
+                      as indicated by the on-link flag in the Prefix               当前缀信息选项的on-link标记
+                      Information option), or                                      指明）或者
                                                                                    
-                    - a neighboring router specifies the address as the            
-                      target of a Redirect message, or                             
+                    - a neighboring router specifies the address as the            一个邻居路由器指定为重定向信息
+                      target of a Redirect message, or                             的目的地址
                                                                                    
-                    - a Neighbor Advertisement message is received for             
-                      the (target) address, or                                     
+                    - a Neighbor Advertisement message is received for             是一个接收邻居通告信息
+                      the (target) address, or                                     的目的地址，或者
                                                                                    
-                    - any Neighbor Discovery message is received from              
+                    - any Neighbor Discovery message is received from              接收到的邻居发现信息的源地址
                       the address.                                                 
                                                                                    
-   off-link    - the opposite of "on-link"; an address that is not                 
-                 assigned to any interfaces on the specified link.                 
+   off-link    - the opposite of "on-link"; an address that is not                 off-link on-link的反义词；和指定连接的任意
+                 assigned to any interfaces on the specified link.                 接口都无关的地址
                                                                                    
-   longest prefix match                                                            
-               - the process of determining which prefix (if any) in a             
-                 set of prefixes covers a target address.  A target                
-                 address is covered by a prefix if all of the bits in              
+   longest prefix match                                                            longest prefix match
+               - the process of determining which prefix (if any) in a             在一组包含目标地址的前缀中选出前缀（如果有的话）的
+                 set of prefixes covers a target address.  A target                处理方法，如果一个前缀和一个目标地址匹配最多左边比特位
+                 address is covered by a prefix if all of the bits in              ，我们就说这个地址被这个前缀匹配
                  the prefix match the left-most bits of the target                 
-                 address.  When multiple prefixes cover an address, the            
-                 longest prefix is the one that matches.                           
+                 address.  When multiple prefixes cover an address, the            当多个前缀包含一个地址，
+                 longest prefix is the one that matches.                           选取最长匹配的一个前缀。
                                                                                    
-   reachability                                                                    
-               - whether or not the one-way "forward" path to a neighbor           
-                 is functioning properly.  In particular, whether                  
-                 packets sent to a neighbor are reaching the IP layer on           
-                 the neighboring machine and are being processed                   
+   reachability                                                                    可达性
+               - whether or not the one-way "forward" path to a neighbor           向邻居单向转发是否
+                 is functioning properly.  In particular, whether                  功能正常。特别的数据包是否
+                 packets sent to a neighbor are reaching the IP layer on           达到邻居设备的IP层，并被收到的
+                 the neighboring machine and are being processed                   IP层合适的处理。对于邻居路由器，
                  properly by the receiving IP layer.  For neighboring              
-                 routers, reachability means that packets sent by a                
-                 node's IP layer are delivered to the router's IP layer,           
-                 and the router is indeed forwarding packets (i.e., it             
-                 is configured as a router, not a host).  For hosts,               
-                 reachability means that packets sent by a node's IP               
-                 layer are delivered to the neighbor host's IP layer.              
+                 routers, reachability means that packets sent by a                可达性意味着节点IP层
+                 node's IP layer are delivered to the router's IP layer,           发送过来的数据包达到了
+                 and the router is indeed forwarding packets (i.e., it             路由器，并且路由器及时的转发了数据包（比如
+                 is configured as a router, not a host).  For hosts,               即设备被配置成一个路由器，而不是一台主机）。对于主机
+                 reachability means that packets sent by a node's IP               可达性意味着一个节点发送的数据包
+                 layer are delivered to the neighbor host's IP layer.              被传输到邻居主机的IP层。
                                                                                    
-   packet      - an IP header plus payload.                                        
+   packet      - an IP header plus payload.                                        packet   IP头加payload
                                                                                    
-   link MTU    - the maximum transmission unit, i.e., maximum packet               
-                 size in octets, that can be conveyed in one                       
+   link MTU    - the maximum transmission unit, i.e., maximum packet               link MTU  最多传输单元，
+                 size in octets, that can be conveyed in one                       一条链路上一个传输单元可以传输的最大的二进制数据包长度
                  transmission unit over a link.                                    
                                                                                    
                                                                                    
@@ -340,54 +340,54 @@ Narten, et al.              Standards Track                     [Page 6]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-   target      - an address about which address resolution information             
-                 is sought, or an address that is the new first hop when           
+   target      - an address about which address resolution information             target   寻找地址解析信息的地址
+                 is sought, or an address that is the new first hop when           或者当被重定向时新的第一跳地址
                  being redirected.                                                 
                                                                                    
-   proxy       - a node that responds to Neighbor Discovery query                  
-                 messages on behalf of another node.  A router acting on           
-                 behalf of a mobile node that has moved off-link could             
-                 potentially act as a proxy for the mobile node.                   
+   proxy       - a node that responds to Neighbor Discovery query                  proxy  可以用代表一个节点回应
+                 messages on behalf of another node.  A router acting on           邻居发现查询报文的节点。一个可以代表节点删除
+                 behalf of a mobile node that has moved off-link could             掉线设备的路由器可以作为移动节点的
+                 potentially act as a proxy for the mobile node.                   代理
                                                                                    
-   ICMP destination unreachable indication                                         
-               - an error indication returned to the original sender of            
-                 a packet that cannot be delivered for the reasons                 
-                 outlined in [ICMPv6].  If the error occurs on a node              
-                 other than the node originating the packet, an ICMP               
-                 error message is generated.  If the error occurs on the           
-                 originating node, an implementation is not required to            
-                 actually create and send an ICMP error packet to the              
-                 source, as long as the upper-layer sender is notified             
-                 through an appropriate mechanism (e.g., return value              
-                 from a procedure call).  Note, however, that an                   
-                 implementation may find it convenient in some cases to            
-                 return errors to the sender by taking the offending               
-                 packet, generating an ICMP error message, and then                
-                 delivering it (locally) through the generic error-                
+   ICMP destination unreachable indication                                         ICMP destination unreachable indication
+               - an error indication returned to the original sender of            一个返回给源发送者的数据包，表明
+                 a packet that cannot be delivered for the reasons                 因为一些原因（在[ICMPv6]中描述）不能传送。
+                 outlined in [ICMPv6].  If the error occurs on a node              如果一个节点出现了报错信息，而不是产生
+                 other than the node originating the packet, an ICMP               数据包的节点，一个ICMP报错信息会
+                 error message is generated.  If the error occurs on the           出现。如果报错出现在源节点，就不需要
+                 originating node, an implementation is not required to            执行构造和发送ICMP报错报文到源
+                 actually create and send an ICMP error packet to the              节点的举措，
+                 source, as long as the upper-layer sender is notified             只要上层发送者能够通过一种
+                 through an appropriate mechanism (e.g., return value              合适的机制发现（比如层析调用
+                 from a procedure call).  Note, however, that an                   的返回值）。仍然需要注意的是
+                 implementation may find it convenient in some cases to            在一些情况下发送令人不舒服的报文
+                 return errors to the sender by taking the offending               构造ICMP报错信息，并通过类似的处理错误路由
+                 packet, generating an ICMP error message, and then                的报错信息到发送者，
+                 delivering it (locally) through the generic error-                这样是更方便的举措
                  handling routines.                                                
                                                                                    
-   random delay                                                                    
-               - when sending out messages, it is sometimes necessary to           
-                 delay a transmission for a random amount of time in               
-                 order to prevent multiple nodes from transmitting at              
-                 exactly the same time, or to prevent long-range                   
-                 periodic transmissions from synchronizing with each               
-                 other [SYNC].  When a random component is required, a             
-                 node calculates the actual delay in such a way that the           
-                 computed delay forms a uniformly distributed random               
-                 value that falls between the specified minimum and                
-                 maximum delay times.  The implementor must take care to           
-                 ensure that the granularity of the calculated random              
-                 component and the resolution of the timer used are both           
-                 high enough to ensure that the probability of multiple            
-                 nodes delaying the same amount of time is small.                  
+   random delay                                                                    random delay
+               - when sending out messages, it is sometimes necessary to           当发送报文时，有时延迟随机时间量发送是很必要的，
+                 delay a transmission for a random amount of time in               这样可以
+                 order to prevent multiple nodes from transmitting at              防止同一个时间多个节点同时传输，
+                 exactly the same time, or to prevent long-range                   防止为了同步各自信息而导致的的
+                 periodic transmissions from synchronizing with each               长时间传输间隙。
+                 other [SYNC].  When a random component is required, a             当需要随机组件时，
+                 node calculates the actual delay in such a way that the           一个节点计算延迟时间的方式是
+                 computed delay forms a uniformly distributed random               计算延迟构成的随机分布
+                 value that falls between the specified minimum and                在一个指定的最小和最大延迟时间区间内
+                 maximum delay times.  The implementor must take care to           这个措施必须小心的确定
+                 ensure that the granularity of the calculated random              计算随机值的粒度和
+                 component and the resolution of the timer used are both           和定时器的分辨度必须足够
+                 high enough to ensure that the probability of multiple            高，确保多个节点相同时延的量
+                 nodes delaying the same amount of time is small.                  小。
                                                                                    
-   random delay seed                                                               
-               - if a pseudo-random number generator is used in                    
-                 calculating a random delay component, the generator               
-                 should be initialized with a unique seed prior to being           
-                 used.  Note that it is not sufficient to use the                  
-                 interface identifier alone as the seed, since interface           
+   random delay seed                                                               random delay seed
+               - if a pseudo-random number generator is used in                    如果在计算随机量的过程中
+                 calculating a random delay component, the generator               需要用到一个伪随机数，
+                 should be initialized with a unique seed prior to being           应该用一个唯一的种子的生成器应该被优先使用。
+                 used.  Note that it is not sufficient to use the                  需要注意用只用接口id当做种子的是不足够的
+                 interface identifier alone as the seed, since interface           因为接口id
                                                                                    
                                                                                    
                                                                                    
@@ -396,53 +396,53 @@ Narten, et al.              Standards Track                     [Page 7]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-                 identifiers will not always be unique.  To reduce the             
-                 probability that duplicate interface identifiers cause            
-                 the same seed to be used, the seed should be calculated           
-                 from a variety of input sources (e.g., machine                    
-                 components) that are likely to be different even on               
-                 identical "boxes".  For example, the seed could be                
+                 identifiers will not always be unique.  To reduce the             不唯一。为了降低
+                 probability that duplicate interface identifiers cause            重复的接口id引起
+                 the same seed to be used, the seed should be calculated           使用相同的种子，种子应该通过一个输入值
+                 from a variety of input sources (e.g., machine                    来计算（例如设备的组件）
+                 components) that are likely to be different even on               输入值应该是不同的。
+                 identical "boxes".  For example, the seed could be                比如cpu的序列号和接口id的组合。
                  formed by combining the CPU's serial number with an               
-                 interface identifier.  Additional information on                  
+                 interface identifier.  Additional information on                  更多的关于随机和随机值生成的信息可以查看[RAND]
                  randomness and random number generation can be found in           
                  [RAND].                                                           
                                                                                    
-2.2.  Link Types                                                                   
+2.2.  Link Types                                                                   链路类型
                                                                                    
-   Different link layers have different properties.  The ones of concern           
-   to Neighbor Discovery are:                                                      
+   Different link layers have different properties.  The ones of concern           不同的链路层拥有不同的特性，
+   to Neighbor Discovery are:                                                      邻居发现涉及到的链路层有：
                                                                                    
-   multicast capable                                                               
-                  - a link that supports a native mechanism at the link            
-                    layer for sending packets to all (i.e., broadcast)             
-                    or a subset of all neighbors.                                  
+   multicast capable                                                               组播能力
+                  - a link that supports a native mechanism at the link            链路层支持向
+                    layer for sending packets to all (i.e., broadcast)             所有（即广播）或者一组邻居发送数据包
+                    or a subset of all neighbors.                                  机制的链路
                                                                                    
-   point-to-point - a link that connects exactly two interfaces.  A                
-                    point-to-point link is assumed to have multicast               
-                    capability and a link-local address.                           
+   point-to-point - a link that connects exactly two interfaces.  A                点对点  只连接两个接口的链路。
+                    point-to-point link is assumed to have multicast               一个点对点链路假定拥有组播能力
+                    capability and a link-local address.                           和一个本地地址。
                                                                                    
-   non-broadcast multi-access (NBMA)                                               
-                  - a link to which more than two interfaces can attach,           
-                    but that does not support a native form of multicast           
+   non-broadcast multi-access (NBMA)                                               non-broadcast multi-access(NBMA)非广播-多路访问网络
+                  - a link to which more than two interfaces can attach,           超过两个可以依附的接口，但不支持本地组播
+                    but that does not support a native form of multicast           或者广播的链路（比如X.25 帧中继等）
                     or broadcast (e.g., X.25, ATM, frame relay, etc.).             
-                    Note that all link types (including NBMA) are                  
-                    expected to provide multicast service for                      
+                    Note that all link types (including NBMA) are                  需要注意的是所有的链路类型（包括NBMA）
+                    expected to provide multicast service for                      都希望能够为需要组播服务的应用提供组播服务
                     applications that need it (e.g., using multicast               
-                    servers).  However, it is an issue for further study           
-                    whether ND should use such facilities or an                    
-                    alternate mechanism that provides the equivalent               
+                    servers).  However, it is an issue for further study           然而，值得进一步研究的问题是， 
+                    whether ND should use such facilities or an                    ND是否应该使用这些设备
+                    alternate mechanism that provides the equivalent               ，还是使用一种为ND提供等效组播能力的替代机制。
                     multicast capability for ND.                                   
                                                                                    
-   shared media   - a link that allows direct communication among a                
-                    number of nodes, but attached nodes are configured             
-                    in such a way that they do not have complete prefix            
-                    information for all on-link destinations.  That is,            
-                    at the IP level, nodes on the same link may not know           
-                    that they are neighbors; by default, they                      
-                    communicate through a router.  Examples are large              
-                    (switched) public data networks such as Switched               
-                    Multimegabit Data Service (SMDS) and Broadband                 
-                    Integrated Services Digital Network (B-ISDN).  Also            
+   shared media   - a link that allows direct communication among a                shared media  运行在大量节点中直接通讯
+                    number of nodes, but attached nodes are configured             但其中的节点被配置成不含有
+                    in such a way that they do not have complete prefix            完整前置信息
+                    information for all on-link destinations.  That is,            对所有的在线目的地址。
+                    at the IP level, nodes on the same link may not know           这就是说，在IP层,相同连接的节点可能不知道
+                    that they are neighbors; by default, they                      他们是邻居；默认的情况下，
+                    communicate through a router.  Examples are large              他们通过一个路由器通讯。例子是公开大数据网络
+                    (switched) public data networks such as Switched               比如交换式多兆位数据服务（SMDS）和
+                    Multimegabit Data Service (SMDS) and Broadband                 宽带综合业务服务网（B-ISDN）
+                    Integrated Services Digital Network (B-ISDN).  Also            也称为大云
                     known as "large clouds".  See [SH-MEDIA].                      
                                                                                    
                                                                                    
@@ -452,51 +452,51 @@ Narten, et al.              Standards Track                     [Page 8]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-   variable MTU   - a link that does not have a well-defined MTU (e.g.,            
-                    IEEE 802.5 token rings).  Many links (e.g.,                    
-                    Ethernet) have a standard MTU defined by the link-             
-                    layer protocol or by the specific document                     
-                    describing how to run IP over the link layer.                  
+   variable MTU   - a link that does not have a well-defined MTU (e.g.,            可变的MTU  不含有定义好的MTU的链路（比如
+                    IEEE 802.5 token rings).  Many links (e.g.,                    IEEE 802.5 令牌环），许多链路（比如
+                    Ethernet) have a standard MTU defined by the link-             以太网）拥有链路层协议定义的
+                    layer protocol or by the specific document                     或者在描述链路层怎么运行IP协议的规格书
+                    describing how to run IP over the link layer.                  定义的标准MTU
                                                                                    
-   asymmetric reachability                                                         
-                  - a link where non-reflexive and/or non-transitive               
-                    reachability is part of normal operation.  (Non-               
-                    reflexive reachability means packets from A reach B,           
-                    but packets from B don't reach A.  Non-transitive              
-                    reachability means packets from A reach B, and                 
-                    packets from B reach C, but packets from A don't               
-                    reach C.)  Many radio links exhibit these                      
+   asymmetric reachability                                                         asymmetric reachability 非对称可达性
+                  - a link where non-reflexive and/or non-transitive               非反射同时/或者非传递是正常操作
+                    reachability is part of normal operation.  (Non-               的链路（非反射可达性
+                    reflexive reachability means packets from A reach B,           意思是数据包可以从A到B,
+                    but packets from B don't reach A.  Non-transitive              但数据包不能从B到A，非传递可达性
+                    reachability means packets from A reach B, and                 意思是数据包可以从A到B，并且数据包
+                    packets from B reach C, but packets from A don't               可以从B到C，但是数据包不能从A到C）
+                    reach C.)  Many radio links exhibit these                      许多无线电链路呈现出这些特性。
                     properties.                                                    
                                                                                    
-2.3.  Addresses                                                                    
+2.3.  Addresses                                                                    地址
                                                                                    
-   Neighbor Discovery makes use of a number of different addresses                 
-   defined in [ADDR-ARCH], including:                                              
+   Neighbor Discovery makes use of a number of different addresses                 ND使用了许多的不同的[ADDR-ARCH]
+   defined in [ADDR-ARCH], including:                                              定义的地址，包括
                                                                                    
-   all-nodes multicast address                                                     
-               - the link-local scope address to reach all nodes,                  
-                 FF02::1.                                                          
+   all-nodes multicast address                                                     all-nodes multicast address 全节点组播地址
+               - the link-local scope address to reach all nodes,                  到达所有节点的本地链路范围地址
+                 FF02::1.                                                          FF02::1
                                                                                    
-   all-routers multicast address                                                   
-               - the link-local scope address to reach all routers,                
-                 FF02::2.                                                          
+   all-routers multicast address                                                   all-routers multicast address 全路由器组播地址
+               - the link-local scope address to reach all routers,                到达所有路由器的本地链路范围地址
+                 FF02::2.                                                          FF02::2
                                                                                    
-   solicited-node multicast address                                                
-               - a link-local scope multicast address that is computed             
-                 as a function of the solicited target's address.  The             
-                 function is described in [ADDR-ARCH].  The function is            
-                 chosen so that IP addresses that differ only in the               
-                 most significant bits, e.g., due to multiple prefixes             
-                 associated with different providers, will map to the              
-                 same solicited-node address thereby reducing the number           
+   solicited-node multicast address                                                solicited-node multicast address 请求节点组播地址
+               - a link-local scope multicast address that is computed             本地链路范围地址是被计算出来
+                 as a function of the solicited target's address.  The             作为请求目的地址的功能。
+                 function is described in [ADDR-ARCH].  The function is            功能被描写在[ADDR-ARCH]
+                 chosen so that IP addresses that differ only in the               这个功能选择出来是为了那些只在特征
+                 most significant bits, e.g., due to multiple prefixes             比特位不同的IP地址，比如由于大部分前缀
+                 associated with different providers, will map to the              和不同的提供者有关，会被映射到相同的请求
+                 same solicited-node address thereby reducing the number           节点地址，因此降低一些节点加入的在链路层的组播地址
                  of multicast addresses a node must join at the link               
                  layer.                                                            
                                                                                    
-   link-local address                                                              
-               - a unicast address having link-only scope that can be              
-                 used to reach neighbors.  All interfaces on routers               
-                 MUST have a link-local address.  Also, [ADDRCONF]                 
-                 requires that interfaces on hosts have a link-local               
+   link-local address                                                              link-local address
+               - a unicast address having link-only scope that can be              一个只有链路范围的单播地址，可以被用来
+                 used to reach neighbors.  All interfaces on routers               达到邻居。所有的路由器接口必须拥有
+                 MUST have a link-local address.  Also, [ADDRCONF]                 一个本地链路地址。同时[ADDRCONF]
+                 requires that interfaces on hosts have a link-local               要求主机的接口拥有一个本地连接地址
                  address.                                                          
                                                                                    
                                                                                    
@@ -508,23 +508,23 @@ Narten, et al.              Standards Track                     [Page 9]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-   unspecified address                                                             
-               - a reserved address value that indicates the lack of an            
-                 address (e.g., the address is unknown).  It is never              
-                 used as a destination address, but may be used as a               
-                 source address if the sender does not (yet) know its              
-                 own address (e.g., while verifying an address is unused           
-                 during stateless address autoconfiguration [ADDRCONF]).           
-                 The unspecified address has a value of 0:0:0:0:0:0:0:0.           
+   unspecified address                                                             unspecified address未指明地址
+               - a reserved address value that indicates the lack of an            一个保留地址值，表明缺乏地址
+                 address (e.g., the address is unknown).  It is never              （比如地址位置），永远不会被用来做
+                 used as a destination address, but may be used as a               为目的地址，但是可能会被用作
+                 source address if the sender does not (yet) know its              源地址，如果发送者还不知道他
+                 own address (e.g., while verifying an address is unused           自己的地址（比如，在确认一个未被使用的地址
+                 during stateless address autoconfiguration [ADDRCONF]).           在无状态自动配置的过程中[ADDRCONFG]).
+                 The unspecified address has a value of 0:0:0:0:0:0:0:0.           未指明的地址值是0:0:0:0:0:0:0:0.
                                                                                    
-   Note that this specification does not strictly comply with the                  
-   consistency requirements in [ADDR-SEL] for the scopes of source and             
-   destination addresses.  It is possible in some cases for hosts to use           
-   a source address of a larger scope than the destination address in              
+   Note that this specification does not strictly comply with the                  需要注意的是本规格没有严格的遵从
+   consistency requirements in [ADDR-SEL] for the scopes of source and             [ADDR-SEL]中对源和目的地址的范围的一致性要求
+   destination addresses.  It is possible in some cases for hosts to use           在一些情况下主机使用一个更大范围源地址
+   a source address of a larger scope than the destination address in              相较于在IPv6头中的目的地址。
    the IPv6 header.                                                                
                                                                                    
 2.4.  Requirements                                                                 
-                                                                                   
+                                                                                   要求
    The keywords MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD,                
    SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL, when they appear in this            
    document, are to be interpreted as described in [KEYWORDS].                     
@@ -539,23 +539,23 @@ RFC 4861               Neighbor Discovery in IPv6         September 2007
    consistent with that described in this document.                                
                                                                                    
 3.  Protocol Overview                                                              
-                                                                                   
-   This protocol solves a set of problems related to the interaction               
-   between nodes attached to the same link.  It defines mechanisms for             
+                                                                                   协议概论
+   This protocol solves a set of problems related to the interaction               本协议解决了一些相同链路中节点间交互的问题。
+   between nodes attached to the same link.  It defines mechanisms for             定义了解决一下问题的机制：
    solving each of the following problems:                                         
                                                                                    
-     Router Discovery: How hosts locate routers that reside on an                  
+     Router Discovery: How hosts locate routers that reside on an                  路由发现：主机如何定位驻留在连接链路上的路由器。
                 attached link.                                                     
                                                                                    
-     Prefix Discovery: How hosts discover the set of address prefixes              
-                that define which destinations are on-link for an                  
-                attached link.  (Nodes use prefixes to distinguish                 
-                destinations that reside on-link from those only                   
+     Prefix Discovery: How hosts discover the set of address prefixes              前缀发现：主机如何发现一个附属链路上的
+                that define which destinations are on-link for an                  在线目的地址的地址前缀
+                attached link.  (Nodes use prefixes to distinguish                 （注意使用前缀区分目的地址是指
+                destinations that reside on-link from those only                   能通过路由器到达的还是在线的。
                 reachable through a router.)                                       
                                                                                    
-     Parameter Discovery: How a node learns link parameters (such as the           
-                link MTU) or Internet parameters (such as the hop limit            
-                value) to place in outgoing packets.                               
+     Parameter Discovery: How a node learns link parameters (such as the           参数发现：节点如何学习连接参数（比如
+                link MTU) or Internet parameters (such as the hop limit            连接MTU）或者英特网参数（比如跳数限制值）
+                value) to place in outgoing packets.                               去设置外发数据包
                                                                                    
                                                                                    
                                                                                    
