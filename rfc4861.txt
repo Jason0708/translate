@@ -564,50 +564,50 @@ Narten, et al.              Standards Track                    [Page 10]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-     Address Autoconfiguration: Introduces the mechanisms needed in                
-                order to allow nodes to configure an address for an                
-                interface in a stateless manner.  Stateless address                
-                autoconfiguration is specified in [ADDRCONF].                      
+     Address Autoconfiguration: Introduces the mechanisms needed in                自动配置地址：介绍一个为了接口
+                order to allow nodes to configure an address for an                无状态配置一个地址的机制。
+                interface in a stateless manner.  Stateless address                无状态配置被介绍在
+                autoconfiguration is specified in [ADDRCONF].                      [ADDRCONF]
                                                                                    
-     Address resolution: How nodes determine the link-layer address of             
-                an on-link destination (e.g., a neighbor) given only the           
-                destination's IP address.                                          
+     Address resolution: How nodes determine the link-layer address of             地址解析：节点如果通过一个
+                an on-link destination (e.g., a neighbor) given only the           目的IP地址确定一个在线目标的的链路层地址
+                destination's IP address.                                          （比如邻居）
                                                                                    
-     Next-hop determination: The algorithm for mapping an IP destination           
-                address into the IP address of the neighbor to which               
-                traffic for the destination should be sent.  The next-             
-                hop can be a router or the destination itself.                     
+     Next-hop determination: The algorithm for mapping an IP destination           下一跳判定：映射目的IP地址到一个邻居的
+                address into the IP address of the neighbor to which               IP地址，为了传输到发送的目的。
+                traffic for the destination should be sent.  The next-             吓一跳可以使一个路由器
+                hop can be a router or the destination itself.                     或者目标自己。
                                                                                    
-     Neighbor Unreachability Detection: How nodes determine that a                 
-                neighbor is no longer reachable.  For neighbors used as            
-                routers, alternate default routers can be tried.  For              
-                both routers and hosts, address resolution can be                  
+     Neighbor Unreachability Detection: How nodes determine that a                 邻居可达性探测：节点怎样判定一个邻居
+                neighbor is no longer reachable.  For neighbors used as            不在可达。如果邻居是一个路由器不可达时，
+                routers, alternate default routers can be tried.  For              可以尝试另外的候补路由器。
+                both routers and hosts, address resolution can be                  对于路由和主机，地址解析可以再次执行。
                 performed again.                                                   
                                                                                    
-     Duplicate Address Detection: How a node determines whether or not             
-                an address it wishes to use is already in use by another           
+     Duplicate Address Detection: How a node determines whether or not             重复地址探测：节点怎样决定一个想用
+                an address it wishes to use is already in use by another           的地址是否已经被另外一个节点用了。
                 node.                                                              
                                                                                    
-     Redirect:  How a router informs a host of a better first-hop node             
-                to reach a particular destination.                                 
+     Redirect:  How a router informs a host of a better first-hop node             重定向：路由器怎么通知主机到达特殊地址
+                to reach a particular destination.                                 的更好的吓一跳节点。
                                                                                    
-   Neighbor Discovery defines five different ICMP packet types: A pair             
-   of Router Solicitation and Router Advertisement messages, a pair of             
-   Neighbor Solicitation and Neighbor Advertisements messages, and a               
-   Redirect message.  The messages serve the following purpose:                    
+   Neighbor Discovery defines five different ICMP packet types: A pair             ND定了五种不同的ICMP数据包类型：
+   of Router Solicitation and Router Advertisement messages, a pair of             路由器请求和路由器通告消息对，
+   Neighbor Solicitation and Neighbor Advertisements messages, and a               邻居请求和邻居通告消息对，
+   Redirect message.  The messages serve the following purpose:                    还有一个重定向消息，消息们有如下目的：
                                                                                    
-     Router Solicitation: When an interface becomes enabled, hosts may             
-                send out Router Solicitations that request routers to              
-                generate Router Advertisements immediately rather than             
+     Router Solicitation: When an interface becomes enabled, hosts may             路由器请求：当使能一个接口，主机可能
+                send out Router Solicitations that request routers to              发送路由器请求，请求路由器立即而不是
+                generate Router Advertisements immediately rather than             在下一个计划时间产生路由器通告消息。
                 at their next scheduled time.                                      
                                                                                    
-     Router Advertisement: Routers advertise their presence together               
-                with various link and Internet parameters either                   
-                periodically, or in response to a Router Solicitation              
-                message.  Router Advertisements contain prefixes that              
-                are used for determining whether another address shares            
-                the same link (on-link determination) and/or address               
-                configuration, a suggested hop limit value, etc.                   
+     Router Advertisement: Routers advertise their presence together               路由通告消息：路由器周期性或者回应
+                with various link and Internet parameters either                   路由器请求报文时，发送路由器通告消息，
+                periodically, or in response to a Router Solicitation              通告自己，各自链路和因特网参数。
+                message.  Router Advertisements contain prefixes that              路由器通告消息包括使用前缀探测是否
+                are used for determining whether another address shares            有另外的地址在共享相同的链路或者
+                the same link (on-link determination) and/or address               相同的地址配置，一个建议的
+                configuration, a suggested hop limit value, etc.                   跳数限制值等。
                                                                                    
                                                                                    
                                                                                    
@@ -620,53 +620,53 @@ Narten, et al.              Standards Track                    [Page 11]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-     Neighbor Solicitation: Sent by a node to determine the link-layer             
-                address of a neighbor, or to verify that a neighbor is             
-                still reachable via a cached link-layer address.                   
-                Neighbor Solicitations are also used for Duplicate                 
-                Address Detection.                                                 
+     Neighbor Solicitation: Sent by a node to determine the link-layer             邻居请求消息：节点发送来探测邻居
+                address of a neighbor, or to verify that a neighbor is             的链路层地址，或者确认邻居是否任然
+                still reachable via a cached link-layer address.                   可用通过缓存的链路层地址可达。
+                Neighbor Solicitations are also used for Duplicate                 邻居请求消息还被用来探测
+                Address Detection.                                                 重复地址。
                                                                                    
-     Neighbor Advertisement: A response to a Neighbor Solicitation                 
-                message.  A node may also send unsolicited Neighbor                
-                Advertisements to announce a link-layer address change.            
+     Neighbor Advertisement: A response to a Neighbor Solicitation                 邻居通告消息:邻居请求消息的回应。
+                message.  A node may also send unsolicited Neighbor                一个节点也发送未请求的邻居通告消息
+                Advertisements to announce a link-layer address change.            来声明链路层地址的变化。
                                                                                    
-     Redirect:  Used by routers to inform hosts of a better first hop              
-                for a destination.                                                 
+     Redirect:  Used by routers to inform hosts of a better first hop              重定向：路由器用来通知主机更好的
+                for a destination.                                                 目的地址下一跳。
                                                                                    
-   On multicast-capable links, each router periodically multicasts a               
-   Router Advertisement packet announcing its availability.  A host                
-   receives Router Advertisements from all routers, building a list of             
-   default routers.  Routers generate Router Advertisements frequently             
-   enough that hosts will learn of their presence within a few minutes,            
-   but not frequently enough to rely on an absence of advertisements to            
-   detect router failure; a separate Neighbor Unreachability Detection             
+   On multicast-capable links, each router periodically multicasts a               在有组播能力的链路上，各个路由器周期性
+   Router Advertisement packet announcing its availability.  A host                的组播路由器通告消息报文来声明自己的存在。
+   receives Router Advertisements from all routers, building a list of             接收到所有路由器的路由器通告后，主机建立默认
+   default routers.  Routers generate Router Advertisements frequently             默认路由器表。当路由器足够频繁产生路由器通告时，
+   enough that hosts will learn of their presence within a few minutes,            主机能够在几分钟内感知到他们的存在，
+   but not frequently enough to rely on an absence of advertisements to            但不够频繁的时候，探测路由器存在就会失败，
+   detect router failure; a separate Neighbor Unreachability Detection             一个独立的邻居不可达探测算法提供失败探测
    algorithm provides failure detection.                                           
                                                                                    
-   Router Advertisements contain a list of prefixes used for on-link               
-   determination and/or autonomous address configuration; flags                    
-   associated with the prefixes specify the intended uses of a                     
-   particular prefix.  Hosts use the advertised on-link prefixes to                
-   build and maintain a list that is used in deciding when a packet's              
-   destination is on-link or beyond a router.  Note that a destination             
-   can be on-link even though it is not covered by any advertised on-              
-   link prefix.  In such cases, a router can send a Redirect informing             
-   the sender that the destination is a neighbor.                                  
+   Router Advertisements contain a list of prefixes used for on-link               路由器通告消息包含用来分辨是非在线的一个前缀表
+   determination and/or autonomous address configuration; flags                    同时可能有自动配置的地址；
+   associated with the prefixes specify the intended uses of a                     前缀的相关标记说明一个特殊前缀的使用计划。
+   particular prefix.  Hosts use the advertised on-link prefixes to                主机利用在线前缀来
+   build and maintain a list that is used in deciding when a packet's              构造或者操作数据包的路由表。
+   destination is on-link or beyond a router.  Note that a destination             需要注意的是目的地址
+   can be on-link even though it is not covered by any advertised on-              可能在线，尽管他没有被任何的通告，来通告在线
+   link prefix.  In such cases, a router can send a Redirect informing             前缀.在一些情况下，路由器可以发送重定向报文，
+   the sender that the destination is a neighbor.                                  通告发送者，目的地址是一个邻居。
                                                                                    
-   Router Advertisements (and per-prefix flags) allow routers to inform            
-   hosts how to perform Address Autoconfiguration.  For example, routers           
-   can specify whether hosts should use DHCPv6 and/or autonomous                   
-   (stateless) address configuration.                                              
+   Router Advertisements (and per-prefix flags) allow routers to inform            路由通告信息（或者前缀标记）允许路由器通告
+   hosts how to perform Address Autoconfiguration.  For example, routers           主机来怎样自动配置地址。例如路由器说明
+   can specify whether hosts should use DHCPv6 and/or autonomous                   主机应该使用DHCPv6还是无状态自动
+   (stateless) address configuration.                                              地址配置。
                                                                                    
-   Router Advertisement messages also contain Internet parameters such             
-   as the hop limit that hosts should use in outgoing packets and,                 
-   optionally, link parameters such as the link MTU.  This facilitates             
-   centralized administration of critical parameters that can be set on            
-   routers and automatically propagated to all attached hosts.                     
+   Router Advertisement messages also contain Internet parameters such             路由通告消息同时也包含因特网参数，例如：
+   as the hop limit that hosts should use in outgoing packets and,                 主机应该在发送数据包时用到的下一跳限制数还有
+   optionally, link parameters such as the link MTU.  This facilitates             可选项，链路参数，比如MTU。这个促进重要参数的中心化管理
+   centralized administration of critical parameters that can be set on            这些重要数据能在路由器上设置，并被
+   routers and automatically propagated to all attached hosts.                     扩散到所有额关联主机。
                                                                                    
-   Nodes accomplish address resolution by multicasting a Neighbor                  
-   Solicitation that asks the target node to return its link-layer                 
-   address.  Neighbor Solicitation messages are multicast to the                   
-   solicited-node multicast address of the target address.  The target             
+   Nodes accomplish address resolution by multicasting a Neighbor                  节点通过邻居请求来完成地址解析，
+   Solicitation that asks the target node to return its link-layer                 邻居请求消息请求目的节点返回链路层地址。
+   address.  Neighbor Solicitation messages are multicast to the                   邻居请求消息组播目的地址到请求节点的组播地址。
+   solicited-node multicast address of the target address.  The target             目标通过邻居单播邻居通告信息返回链路层地址。
    returns its link-layer address in a unicast Neighbor Advertisement              
                                                                                    
                                                                                    
@@ -676,30 +676,30 @@ Narten, et al.              Standards Track                    [Page 12]
 RFC 4861               Neighbor Discovery in IPv6         September 2007           
                                                                                    
                                                                                    
-   message.  A single request-response pair of packets is sufficient for           
-   both the initiator and the target to resolve each other's link-layer            
-   addresses; the initiator includes its link-layer address in the                 
-   Neighbor Solicitation.                                                          
+   message.  A single request-response pair of packets is sufficient for           一个单独的请求-应答报文对对于
+   both the initiator and the target to resolve each other's link-layer            初始和目的都是充足的来解析各自的链路层
+   addresses; the initiator includes its link-layer address in the                 地址；初始者包含链路层在邻居请求消息中
+   Neighbor Solicitation.                                                          包括链路层地址。
                                                                                    
-   Neighbor Solicitation messages can also be used to determine if more            
-   than one node has been assigned the same unicast address.  The use of           
-   Neighbor Solicitation messages for Duplicate Address Detection is               
-   specified in [ADDRCONF].                                                        
+   Neighbor Solicitation messages can also be used to determine if more            邻居请求消息还可以被用来检查是否有
+   than one node has been assigned the same unicast address.  The use of           多个节点配置了相同的单播地址。
+   Neighbor Solicitation messages for Duplicate Address Detection is               邻居请求消息检查重复地址的应用在
+   specified in [ADDRCONF].                                                        [ADDRCONF]中有说明。
                                                                                    
-   Neighbor Unreachability Detection detects the failure of a neighbor             
-   or the failure of the forward path to the neighbor.  Doing so                   
-   requires positive confirmation that packets sent to a neighbor are              
-   actually reaching that neighbor and being processed properly by its             
-   IP layer.  Neighbor Unreachability Detection uses confirmation from             
-   two sources.  When possible, upper-layer protocols provide a positive           
-   confirmation that a connection is making "forward progress", that is,           
-   previously sent data is known to have been delivered correctly (e.g.,           
-   new acknowledgments were received recently).  When positive                     
-   confirmation is not forthcoming through such "hints", a node sends              
-   unicast Neighbor Solicitation messages that solicit Neighbor                    
+   Neighbor Unreachability Detection detects the failure of a neighbor             邻居不可达探测功能探测邻居的失败
+   or the failure of the forward path to the neighbor.  Doing so                   或者到达邻居的前转路径失败。
+   requires positive confirmation that packets sent to a neighbor are              功能实现需要主动的确认。当数据包被
+   actually reaching that neighbor and being processed properly by its             送达邻居，并且被邻居的IP层正确的处理之后。
+   IP layer.  Neighbor Unreachability Detection uses confirmation from             邻居不可达性探测使用两种方式确认。
+   two sources.  When possible, upper-layer protocols provide a positive           当可能的时候，上层协议提供一个主动的
+   confirmation that a connection is making "forward progress", that is,           链接正在前转进程，这就是说
+   previously sent data is known to have been delivered correctly (e.g.,           前面发送的数据已经正确的传送了
+   new acknowledgments were received recently).  When positive                     （比如新的确认刚被接收），当主动确认没有
+   confirmation is not forthcoming through such "hints", a node sends              这种现成出现的迹象，节点发送
+   unicast Neighbor Solicitation messages that solicit Neighbor                    单播邻居请求消息，请求邻居通告消息，通过吓一跳的可达确认消息来得知
    Advertisements as reachability confirmation from the next hop.  To              
-   reduce unnecessary network traffic, probe messages are only sent to             
-   neighbors to which the node is actively sending packets.                        
+   reduce unnecessary network traffic, probe messages are only sent to             为了降低不必要的网络传输，只有节点
+   neighbors to which the node is actively sending packets.                        需要主动发包的时候，才会发送探测消息。
                                                                                    
    In addition to addressing the above general problems, Neighbor                  
    Discovery also handles the following situations:                                
